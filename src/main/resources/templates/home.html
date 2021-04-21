@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="EUC-KR">
+<title>Taco Cloud</title>
+</head>
+<body>
+	<h1>Welcome to...</h1>
+    <img th:src="@{/images/TacoCloud.png}"/>
+</body>
+</html>
+<!-- 
+
+<img> 태그에서는 컨텍스트의 상대적인 경로에 위치하는 이미지를 참조하는 @{...} 표현식을 사용해서 Thymeleaf의 th:src 속성을 지정한다
+여기서는 컨텍스트의 상대경로인 /images/TacoCloud.png를 참조한다.
+
+타임리프 템플릿은 요청 데이터를 나타내는 속성을 추가로 갖는 HTML이다. 예르 들어, key가 "message"인 요청 속성이 있고,
+이것은 Thymeleaf를 사용해서 HTML <p> 태그로 나타내고자 했다면 다음과 같이 thymeleaf 탬플릿에 작성했을 것이다.
+
+<p th:text="${message}"> placeholder message </p>
+
+이미지와 같은 정적인 컨텐츠를 /src/main/resources/static 폴더에 위치해야 한다. 따라서 이 이미지도 프로젝트의
+/src/main/resources/static/images/TacoCloud.png로 저장되어야 한다.
+static 폴더에 새로운 하위 폴더인 images를 만들어서 거기에  파일 넣기.
+
+ -->
