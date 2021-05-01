@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+<meta charset="EUC-KR">
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+  </head>
+
+  <body>
+    <h1>Design your taco!</h1>
+    <img th:src="@{/images/TacoCloud.png}"/>
+
+    <form method="POST" th:object="${taco}">
+    
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ingredients')}"
+          th:errors="*{ingredients}">Ingredient Error</span>
+          
+    <div class="grid">
+      <div class="ingredient-group" id="wraps">
+      <h3>Designate your wrap:</h3>
+      <div th:each="ingredient : ${wrap}">
+        <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
+        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+      </div>
+      </div>
+
+      <div class="ingredient-group" id="proteins">
+      <h3>Pick your protein:</h3>
+      <div th:each="ingredient : ${protein}">
+        <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
+        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+      </div>
+      </div>
+
+      <div class="ingredient-group" id="cheeses">
+      <h3>Choose your cheese:</h3>
+      <div th:each="ingredient : ${cheese}">
+        <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
+        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+      </div>
+      </div>
+
+      <div class="ingredient-group" id="veggies">
+      <h3>Determine your veggies:</h3>
+      <div th:each="ingredient : ${veggies}">
+        <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
+        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+      </div>
+      </div>
+
+      <div class="ingredient-group" id="sauces">
+      <h3>Select your sauce:</h3>
+      <div th:each="ingredient : ${sauce}">
+        <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
+        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+      </div>
+      </div>
+      </div>
+
+      <div>
+
+      <h3>Name your taco creation:</h3>
+      <input type="text" th:field="*{name}"/>
+      <span th:text="${#fields.hasErrors('name')}">XXX</span>
+      <span class="validationError"
+            th:if="${#fields.hasErrors('name')}"
+            th:errors="*{name}">Name Error</span>
+      <br/>
+
+      <button>Submit your taco</button>
+      </div>
+    </form>
+  </body>
+</html>
+
+<!-- 
+
+각 유형의 식자재마다 <div> 코드가 반복되어 있다.
+그리고 사용자 자신이 생성한 타코의 이름을 지정할 수 있는 필드와 submit 버튼을 포함한다.
+
+<body> 태그 맨 앞에 있는 타코 클라우드 로고 이미지와 <head> 태그에 있는 
+<link> 스타일 시트 참조도 주목하라. 두 가지 모두에서 Thymeleaf의 @{} 연산자가 사용되었다.
+참조되는 정적 콘텐츠인 로고 이미지와 스타일시트의 위치(컨텍스트 상대 경로)를 알려주기 위해서다.
+1장에서 배웠듯이, 스프링 부트 애플리케이션의 정적 콘텐츠는 classpath의 루트 밑에 있는 
+/static 디렉터리에 위치한다.
+
+
+
+
+
+ -->
+
+
+
