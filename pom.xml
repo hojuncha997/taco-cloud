@@ -94,7 +94,7 @@
 		</dependency>
 
 
-		<!-- 스프링 security (추가하고 처음에는 프로젝트를 재빌드 해줘야 적용된다.) -->
+		<!-- 스프링 security (추가하고 처음에는 프로젝트를 재빌드 해줘야 적용된다. 첫 id는 user이고 pw는 console에 찍혀있다) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
