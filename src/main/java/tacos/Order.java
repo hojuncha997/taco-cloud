@@ -25,7 +25,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Taco_Order")
+@Table(name="Taco_Order") 
+
+/* @Table 애노테이션은 Order 개체가 DB의 "Taco_Orders" 테이블에 저장되어야 한다는 것을 의미한다. 
+ * 이 애노테이션은 어떤 개체(entity)에도 사용될 수 있지만, Order의 경우는 반드시 필요하다.
+ * 만약 이 애노테이션을 지정하지 않으면 JPA가 Order라는 이름의 테이블로 Order개체를 저장할 것이다.
+ * 그러나 Order는 SQL의 예약어이므로 문제가 생기기 떄문에 @Table 애노테이션이 필요하다.
+ */
 public class Order implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
