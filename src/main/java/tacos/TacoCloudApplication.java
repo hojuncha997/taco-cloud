@@ -6,14 +6,60 @@ package tacos;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+
+import tacos.Ingredient.Type;
+import tacos.data.IngredientRepository;
+
+
+
+
+
 @SpringBootApplication
 public class TacoCloudApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TacoCloudApplication.class, args);
 	}
+	
+	
+	
+	@Bean
+	public CommandLineRunner dataLoader(IngredientRepository repo) {
+		return new CommandLineRunner() {
+			/*
+			 여기서 부트스트랩 클래스를 변경한 이유는 애플리케이션이 시작되면서 호출되는 dataLoader()메서드에서
+			 식자재 데이터를 DB에 미리 저장할 필요가 있기 때문이다. (JDBC 기반에서는 애플리케이션이 시작될 때 자동으로 시작되는 data.sql에서 했다.)
+			 만일 이런 요구사항이 없다면 스프링 데이터 JPA를 사용하기 위해 부트스트랩 클래스를 변경할 필요가 없었을 것이다.
+			 */
+			
+			@Override
+			public void run(String...args) throws Exception {
+				repo.save(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
+		        repo.save(new Ingredient("COTO", "Corn Tortilla", Type.WRAP));
+		        repo.save(new Ingredient("GRBF", "Ground Beef", Type.PROTEIN));
+		        repo.save(new Ingredient("CARN", "Carnitas", Type.PROTEIN));
+		        repo.save(new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES));
+		        repo.save(new Ingredient("LETC", "Lettuce", Type.VEGGIES));
+		        repo.save(new Ingredient("CHED", "Cheddar", Type.CHEESE));
+		        repo.save(new Ingredient("JACK", "Monterrey Jack", Type.CHEESE));
+		        repo.save(new Ingredient("SLSA", "Salsa", Type.SAUCE));
+		        repo.save(new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
+			}
+		};
+	}
 
 }
+
+	
+
+
+
+
+
+
+
 
 
 /*
