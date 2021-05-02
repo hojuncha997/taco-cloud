@@ -1,3 +1,16 @@
+
+/*
+
+원래 이 코드들은 JPA를 사용하기 전, JDBC를 사용할 때, OrderRepository 인터페이스를
+구현하기 위해 짜 놓은 것이다. 그러나 JPA를 사용하면서 이 클래스들은 필요 없어졌다.
+책에는 삭제하라고 되어 있지만 기록을 위해 removed 패키지를 만들어 보관하였다.
+===================================================
+
+
+
+
+
+
 package tacos.data;
 
 import java.util.Date;
@@ -76,3 +89,7 @@ public class JdbcOrderRepository implements OrderRepository {
 	}
 
 }
+
+
+
+*/
