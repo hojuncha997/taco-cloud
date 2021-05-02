@@ -1,15 +1,25 @@
 
 package tacos;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 import lombok.Data;
 
 @Data
+@Entity		// JPA: 이 클래스를 JPA개체로 선언하려면 반드시 @Entity 애노테이션을 추가해야 한다.
 public class Taco {
+	
+	@Id	//DB가 자동으로 생성해 주는 ID값이 사용됨. 따라서 strategy 속성의 값이 GenerationType.AUTO로 설정된 @GaneratedValue애노테이션이 지정됨
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id; ////타코 객체를 DB에 저장할 때 식별해주는 필드. 원래는 게터세터가 있어야 한다.
 	private Date createdAt;
 	
@@ -18,8 +28,35 @@ public class Taco {
 	@Size(min=5, message="Name must be at least 5 characters long")
 	private String name;
 	
+	@ManyToMany(targetEntity=Ingredient.class)
+	
+	/*
+	 * Taco 및 이것과 연관된 Ingredient들 간의 관계를 선언하기 위해 @ManyToMany 지정한다.
+	 * 하나의 Taco 객체는 많은 Ingredient 객체를 가질 수 있고,
+	 * 하나의 Ingredient 역시 여러 Taco 객체에 포함될 수 있기 때문이다.
+	 */
+	
 	@Size(min=1, message="You must choose at least 1 ingredient")
 	private List<Ingredient> ingredients;
+	
+	@PrePersist
+	void createdAt() {
+		this.createdAt = new Date();
+		
+		/*
+		 * 이 메소드는 Taco 객체가 저장되기 전에 createdAt 속성을 현재 일자와 시간으로 설정하는 데 사용될 것이다.
+		 */
+		
+		/*
+		 * java.util.Date.Date(): 
+		 * Allocates a Date object and initializes it so that
+		 * it represents the time at which it was allocated, measured to 
+		 * the nearest millisecond.
+		 * 
+		 *
+		 */
+	}
+	
 }
 
 

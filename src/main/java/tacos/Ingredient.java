@@ -1,12 +1,20 @@
 package tacos;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
+@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)	//원래 JPA에서는 개체가 인자 없는 생성자를 가져야 한다.
+@Entity	// JPA: 이 클래스를 JPA개체로 선언하려면 반드시 @Entity 애노테이션을 추가해야 한다.
 public class Ingredient {
-
+	
+	@Id	//JPA: 이 클래스의 id 속성에는 반드시 @Id를 지정하여 이 속성이 DB의 개체를 고유하게 식별한다는 것을 나타내야 한다.
 	private final String id;
 	private final String name;
 	private final Type type;
@@ -16,6 +24,15 @@ public class Ingredient {
 	}
 
 }
+
+// @Data ==>
+/*
+ * public String getId() { return id; }
+ * 
+ * public String getName() { return name; }
+ * 
+ * public Type getType() { return type; }
+ */
 
 
 //// 자바 도메인 클래스이다.
