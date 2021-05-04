@@ -14,7 +14,9 @@
  도메인 객체인 User가 정의되었으므로 다음은 Repository Interface를 정의한다. 
  
  
- */
+ User.java => UserRepository => UserRepositoryDetailsService => SecurityConfig.java
+ 
+ */ 
 
 package tacos;
 
@@ -39,7 +41,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 @RequiredArgsConstructor
-public class User implements UserDetails {			
+public class User implements UserDetails {			//UserDetails 구현
 	private static final long serialVersionUID = 1L;
 
 	  @Id
