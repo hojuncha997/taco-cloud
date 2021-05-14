@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Taco Cloud</title>
+</head>
+
+<body>
+	<h1>Login</h1>
+	<img th:src="@{/images/TacoCloud.png}"/>
+	
+	<div th:if="${error}">
+		Unable to login. Check your username and password.
+	</div>
+	
+	<p>New here? Click
+		<a th:href="@{/register}">here</a> to register.
+	</p>
+<!-- tag::thAction[]  -->
+	<form method="POST" th:action="@{/login}" id="loginForm">
+
+<!-- end::thACtion[]  -->
+	<label for="username">Username: </label>
+	<input type="text" name="username" id="username" /><br/>
+	<label for="password">Password: </label>
+	<input type="password" name="password" id="password" /><br/>
+	
+	<input type="submit" value="Login"/>
+
+	</form>	
+
+</body>
+</html>
+
+
+<!-- 로그인 페이지에서 주목할 부분은 POST요청 경로 및 사용자 이름과 비밀번호 필드이다.
+기본적으로 스프링 시큐리티는 /login 경로로 로그인 요청을 처리하며 사용자 이름과 비밀번호 필드의
+이름은 username과 password로 간주한다. 그러나 이것은 다시 변경할 수 있다. -->
