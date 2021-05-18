@@ -1,6 +1,3 @@
-
-
-
 package tacos;
 
 import java.io.Serializable;
@@ -13,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -59,13 +58,14 @@ private User user;
 public class Order implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	private Long id;
 	private Date PlacedAt; //import java.util.Date;
 	
-	@ManyToMany	
+	@ManyToOne	
 	private User user;
 	
 	//user 속성의 @ManyToOne 애노테이션은 한 건의 주문이 한 명의 사용자에게 속한다는 것을 나타낸다.
